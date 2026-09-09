@@ -368,7 +368,10 @@
                     var linksDiv = document.createElement('div');
                     linksDiv.className = 'download-links';
                     
-                    var links = game.download_links.mediafire.concat(game.download_links['1file']).concat(game.download_links.other);
+                    var downloadLinks = game.download_links || {};
+                    var links = (Array.isArray(downloadLinks.mediafire) ? downloadLinks.mediafire : [])
+                        .concat(Array.isArray(downloadLinks['1file']) ? downloadLinks['1file'] : [])
+                        .concat(Array.isArray(downloadLinks.other) ? downloadLinks.other : []);
                     for (var k = 0; k < links.length; k++) {
                         var link = links[k];
                         var btn = document.createElement('a');
