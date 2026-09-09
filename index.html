@@ -366,9 +366,13 @@
                     
                     const linksDiv = document.createElement('div');
                     linksDiv.className = 'download-links';
+                    const downloadLinks = game.download_links || {};
+                    const mediafireLinks = Array.isArray(downloadLinks.mediafire) ? downloadLinks.mediafire : [];
+                    const oneFileLinks = Array.isArray(downloadLinks['1file']) ? downloadLinks['1file'] : [];
+                    const otherLinks = Array.isArray(downloadLinks.other) ? downloadLinks.other : [];
                     
                     // Add Mediafire links
-                    game.download_links.mediafire.forEach((link, index) => {
+                    mediafireLinks.forEach((link, index) => {
                         const btn = document.createElement('a');
                         btn.href = `redirect-optimized.html?url=${encodeURIComponent(link)}&game=${encodeURIComponent(game.name)}&host=mediafire`;
                         btn.className = 'download-btn btn-mediafire';
@@ -378,7 +382,7 @@
                     });
                     
                     // Add 1File links
-                    game.download_links['1file'].forEach((link, index) => {
+                    oneFileLinks.forEach((link, index) => {
                         const btn = document.createElement('a');
                         btn.href = `redirect-optimized.html?url=${encodeURIComponent(link)}&game=${encodeURIComponent(game.name)}&host=1file`;
                         btn.className = 'download-btn btn-1file';
@@ -388,7 +392,7 @@
                     });
                     
                     // Add other links
-                    game.download_links.other.forEach((link, index) => {
+                    otherLinks.forEach((link, index) => {
                         const btn = document.createElement('a');
                         btn.href = `redirect-optimized.html?url=${encodeURIComponent(link)}&game=${encodeURIComponent(game.name)}&host=other`;
                         btn.className = 'download-btn btn-other';

@@ -22,3 +22,5 @@
 ## Deployment
 - `.github/workflows/static.yml` deploys the entire repository to GitHub Pages only on pushes to `main` (or manual dispatch). There is no build artifact directory.
 - Changes to `service-worker.js` should use a new `CACHE_NAME` so existing clients drop the prior cache during activation.
+- `Dockerfile` packages the static files with Nginx; build with `docker build -t ps4-games-database .` and run with `docker run --rm -p 7000:80 ps4-games-database`.
+
