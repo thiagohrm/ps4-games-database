@@ -312,6 +312,9 @@
         async function loadGames() {
             try {
                 const response = await fetch('ps4_games_expanded.json');
+                if (!response.ok) {
+                    throw new Error(`Database request failed with status ${response.status}`);
+                }
                 allGames = await response.json();
                 displayGames(allGames);
                 document.getElementById('searchInfo').textContent = `Showing all ${allGames.length.toLocaleString()} games`;
