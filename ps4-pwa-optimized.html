@@ -313,6 +313,8 @@
                     } catch (e) {
                         document.getElementById('gamesContainer').innerHTML = '<div class="loading">Error parsing database</div>';
                     }
+                } else {
+                    document.getElementById('gamesContainer').innerHTML = '<div class="loading">Error loading database</div>';
                 }
             };
             

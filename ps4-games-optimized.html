@@ -295,7 +295,7 @@
         
         function loadGames() {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'ps4-games-database/ps4_games_expanded.json', true);
+            xhr.open('GET', 'ps4_games_expanded.json', true);
             
             xhr.onprogress = function(e) {
                 if (e.lengthComputable) {
@@ -313,6 +313,8 @@
                     } catch (e) {
                         document.getElementById('gamesContainer').innerHTML = '<div class="loading">Error parsing database</div>';
                     }
+                } else {
+                    document.getElementById('gamesContainer').innerHTML = '<div class="loading">Error loading database</div>';
                 }
             };
             

@@ -1,14 +1,14 @@
 // PS4 Games Database - Service Worker
 // Provides offline functionality by caching all necessary files
 
-const CACHE_NAME = 'ps4-games-db-v1';
+const CACHE_NAME = 'ps4-games-db-v2';
 const CACHE_VERSION = '1.0.0';
 
 // Files to cache for offline functionality
 const CACHE_FILES = [
     './',
     './ps4-pwa-optimized.html',
-    './ps4_games_with_downloads.json',
+    './ps4_games_expanded.json',
     './manifest.json',
     './gamepad-controller.js'
 ];
@@ -126,9 +126,9 @@ self.addEventListener('sync', (event) => {
 // Function to update database in background
 async function updateDatabase() {
     try {
-        const response = await fetch('./ps4_games_with_downloads.json');
+        const response = await fetch('./ps4_games_expanded.json');
         const cache = await caches.open(CACHE_NAME);
-        await cache.put('./ps4_games_with_downloads.json', response);
+        await cache.put('./ps4_games_expanded.json', response);
         console.log('[Service Worker] Database updated successfully');
     } catch (error) {
         console.error('[Service Worker] Database update failed:', error);
